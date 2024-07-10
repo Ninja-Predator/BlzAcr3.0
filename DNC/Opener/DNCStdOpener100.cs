@@ -1,20 +1,14 @@
 ﻿using AEAssist;
-using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.CombatRoutine.Module.Opener;
 using AEAssist.Extension;
 using AEAssist.Helper;
 using Blz.DNC.Data;
 using Blz.DNC.Setting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Blz.DNC.Opener
 {
-    public class DNCStdOpener100 : IOpener, ISlotSequence
+    public class DNCStdOpener100 : IOpener
     {
         public int StartCheck()
         {
@@ -42,11 +36,14 @@ namespace Blz.DNC.Opener
             return -1;
         }
 
-        public List<Action<Slot>> Sequence { get; }
+        public List<Action<Slot>> Sequence { get; } = new List<Action<Slot>>()
+        {
+            Step0
+        };
 
         public void InitCountDown(CountDownHandler countDownHandler)
         {
-            countDownHandler.AddAction(14000,DNCDefinesData.Spells.StandardStep,SpellTargetType.Self);
+            countDownHandler.AddAction(14000,DNCDefinesData.Spells.StandardStep);
             countDownHandler.AddAction(11500, DNCSpellHelper.GetStep);
             countDownHandler.AddAction(9000, DNCSpellHelper.GetStep);
             if (DancerRotationEntry.QT.GetQt("爆发药") && !DNCSettings.Instance.delayPotion)
@@ -56,18 +53,10 @@ namespace Blz.DNC.Opener
             countDownHandler.AddAction(500, DNCDefinesData.Spells.DoubleStandardFinish);
         }
 
-
         private static void Step0(Slot slot)
         {
             slot.Add(DNCDefinesData.Spells.Flourish.GetSpell());
             slot.Add(DNCDefinesData.Spells.TechnicalStep.GetSpell());
         }
-
-        public DNCStdOpener100()
-        {
-            Sequence.Add(new Action<Slot>(Step0));
-
-        }
-
     }
 }

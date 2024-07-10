@@ -68,7 +68,7 @@ public class DNCFanDanceAbility : ISlotResolver
     public void Build(Slot slot)
     {
         Spell spell = DNCDefinesData.Spells.FanDance.GetSpell();
-        if (DNCDefinesData.Spells.FanDance2.IsUnlock() && TargetHelper.CheckNeedUseAoeByMeDnc(5, 5, 2) && DancerRotationEntry.QT.GetQt("AOE"))
+        if (DNCDefinesData.Spells.FanDance2.IsUnlock() && TargetHelper.CheckNeedUseAoeByMe(5, 5, 2) && DancerRotationEntry.QT.GetQt("AOE"))
         {
             spell = DNCDefinesData.Spells.FanDance2.GetSpell();
         }

@@ -1,11 +1,9 @@
 ﻿using AEAssist;
-using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Extension;
 using AEAssist.Helper;
 using AEAssist.JobApi;
 using AEAssist.MemoryApi;
-using Blz.DNC;
 using Blz.DNC.Data;
 using Blz.DNC.Setting;
 

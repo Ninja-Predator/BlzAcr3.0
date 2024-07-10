@@ -20,40 +20,23 @@ public class DNCFanDance4Ability : ISlotResolver
         }
         if (DNCDefinesData.Spells.Devilment.GetSpell().Cooldown.TotalMilliseconds <= 1000.0)
         {
-            return -1;
-        }
-        if (DNCDefinesData.Spells.TechnicalStep.GetSpell().Cooldown.TotalMilliseconds <= 18000.0 && DancerRotationEntry.QT.GetQt("大舞") && DancerRotationEntry.QT.GetQt("爆发"))
-        {
-            return -1;
+            return -9;
         }
         if (!Core.Me.HasAura(DNCDefinesData.Buffs.FourfoldFanDance) && !DNCDefinesData.Spells.Flourish.RecentlyUsed(1200))
         {
-            return -1;
+            return -7;
         }
         if (DNCDefinesData.Spells.Devilment.RecentlyUsed(1200))
         {
-            return -4;
+            return -6;
         }
         if (Core.Resolve<JobApi_Dancer>().IsDancing)
         {
-            return -3;
+            return -5;
         }
         if (Core.Me.HasAura(DNCDefinesData.Buffs.Devilment))
         {
             return 1;
-        }
-        if (!Core.Me.HasAura(DNCDefinesData.Buffs.Devilment))
-        {
-            double doubletime = DNCDefinesData.Spells.Devilment.GetSpell().Cooldown.TotalMilliseconds + (double)((Core.Resolve<MemApiSpell>().GetGCDDuration()- Core.Resolve<MemApiSpell>().GetElapsedGCD()) * 2);
-            int time = (int)doubletime;
-            if (Core.Me.HasMyAuraWithTimeleft(DNCDefinesData.Buffs.FourfoldFanDance, time) || DNCDefinesData.Spells.Flourish.RecentlyUsed(1200))
-            {
-                return -2;
-            }
-        }
-        if (Core.Me.HasAura(DNCDefinesData.Buffs.TechnicalStep))
-        {
-            return -6;
         }
         return 0;
     }

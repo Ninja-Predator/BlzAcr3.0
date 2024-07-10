@@ -1,6 +1,5 @@
 ﻿using AEAssist;
 using AEAssist.CombatRoutine;
-using AEAssist.CombatRoutine.Module;
 using AEAssist.Extension;
 using AEAssist.Helper;
 using AEAssist.JobApi;
@@ -12,9 +11,11 @@ namespace Blz.DNC
 {
     public static class DNCSpellHelper
     {
+        public static uint OutSpell = 0U;
+
         public static Spell GetBaseGCDCombo()
         {
-            if (DNCDefinesData.Spells.Windmill.IsUnlock() && TargetHelper.CheckNeedUseAoeByMeDnc(5, 5, 3) && DancerRotationEntry.QT.GetQt("AOE"))
+            if (DNCDefinesData.Spells.Windmill.IsUnlock() && TargetHelper.CheckNeedUseAoeByMe(5, 5, 3) && DancerRotationEntry.QT.GetQt("AOE"))
             {
                 return DNCSpellHelper.GetAOECombo();
             }
@@ -40,7 +41,7 @@ namespace Blz.DNC
         }
         public static Spell GetProcGCDCombo()
         {
-            if (DNCDefinesData.Spells.RisingWindmill.IsUnlock() && TargetHelper.CheckNeedUseAoeByMeDnc(5, 5, 2) && DancerRotationEntry.QT.GetQt("AOE"))
+            if (DNCDefinesData.Spells.RisingWindmill.IsUnlock() && TargetHelper.CheckNeedUseAoeByMe(5, 5, 2) && DancerRotationEntry.QT.GetQt("AOE"))
             {
                 return DNCSpellHelper.GetProcAOECombo();
             }
@@ -85,18 +86,17 @@ namespace Blz.DNC
             return null;
         }
 
-        public static Spell GetStep()
+        public static Spell? GetStep()
         {
-            uint Step = Core.Resolve<JobApi_Dancer>().NextStep;
-            if (Core.Me.GetCurrTarget().CanAttack() && AI.Instance.BattleData.CurrBattleTimeInMs > 0L)
+            if (Core.Me.GetCurrTarget().CanAttack())
             {
                 if (Core.Me.HasAura(DNCDefinesData.Buffs.StandardStep) && Core.Resolve<JobApi_Dancer>().CompleteSteps == 2)
                 {
-                    Step = DNCDefinesData.Spells.DoubleStandardFinish;
+                    return DNCDefinesData.Spells.DoubleStandardFinish.GetSpell();
                 }
-                if (Core.Me.HasAura(DNCDefinesData.Buffs.TechnicalStep) && Core.Resolve<JobApi_Dancer>().CompleteSteps == 4)
+                if (Core.Resolve<JobApi_Dancer>().CompleteSteps == 4)
                 {
-                    Step = DNCDefinesData.Spells.QuadrupleTechnicalFinish;
+                    return DNCDefinesData.Spells.QuadrupleTechnicalFinish.GetSpell();
                 }
             }
             else
@@ -105,12 +105,12 @@ namespace Blz.DNC
                 {
                     return null;
                 }
-                if (Core.Me.HasAura(DNCDefinesData.Buffs.TechnicalStep) && Core.Resolve<JobApi_Dancer>().CompleteSteps == 4)
+                if (Core.Resolve<JobApi_Dancer>().CompleteSteps == 4)
                 {
                     return null;
                 }
             }
-            return Step.GetSpell();
+            return Core.Resolve<JobApi_Dancer>().NextStep.GetSpell();
         }
     }
 }

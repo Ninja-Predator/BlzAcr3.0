@@ -1,10 +1,7 @@
 ﻿using AEAssist;
-using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Extension;
 using AEAssist.Helper;
-using AEAssist.MemoryApi;
-using Blz.DNC;
 using Blz.DNC.Data;
 
 namespace Blz.DNC.GCD;
@@ -21,7 +18,7 @@ public class DNCDevilmentAbility : ISlotResolver
         {
             return -10;
         }
-        if (!Core.Me.HasLocalPlayerAura(DNCDefinesData.Buffs.TechnicalFinish))
+        if (!Core.Me.HasLocalPlayerAura(DNCDefinesData.Buffs.TechnicalFinish)&&!DNCDefinesData.Spells.QuadrupleTechnicalFinish.RecentlyUsed(GCDHelper.GetGCDDuration()*2))
         {
             return -1;
         }

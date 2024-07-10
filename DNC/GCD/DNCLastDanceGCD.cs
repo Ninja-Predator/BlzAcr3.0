@@ -1,12 +1,9 @@
 ﻿using AEAssist;
-using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Extension;
 using AEAssist.Helper;
 using AEAssist.MemoryApi;
-using Blz.DNC;
 using Blz.DNC.Data;
-using Blz.DNC.Setting;
 
 namespace Blz.DNC.GCD;
 
@@ -22,7 +19,7 @@ public class DNCLastDanceGCD : ISlotResolver
         {
             return -10;
         }
-        if (Core.Resolve<MemApiSpell>().GetCooldown(DNCDefinesData.Spells.Devilment).TotalSeconds<25.0)
+        if (DNCDefinesData.Spells.Devilment.GetSpell().Cooldown.TotalSeconds<25.0)
         {
             return -1;
         }

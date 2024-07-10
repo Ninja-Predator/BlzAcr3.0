@@ -1,10 +1,9 @@
 ﻿using AEAssist;
-using AEAssist.CombatRoutine;
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Extension;
 using AEAssist.Helper;
+using AEAssist.JobApi;
 using AEAssist.MemoryApi;
-using Blz.DNC;
 using Blz.DNC.Data;
 
 namespace Blz.DNC.GCD;
@@ -30,6 +29,10 @@ public class DNCTecStepGCD : ISlotResolver
             return -1;
         }
         if (!DNCDefinesData.Spells.TechnicalStep.IsReady())
+        {
+            return -1;
+        }
+        if (Core.Resolve<JobApi_Dancer>().IsDancing)
         {
             return -1;
         }
