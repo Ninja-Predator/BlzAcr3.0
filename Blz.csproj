@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+		<TargetFramework>net8.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="AEAssist">
+        <HintPath>..\..\AEAssist3.0 国际服EA版本 0709_7\AEAssistENVersion\AEAssist\AEAssist.dll</HintPath>
+      </Reference>
+      <Reference Include="Dalamud">
+        <HintPath>..\..\dev\Dalamud.dll</HintPath>
+      </Reference>
+      <Reference Include="FFXIVClientStructs">
+        <HintPath>..\..\dev\FFXIVClientStructs.dll</HintPath>
+      </Reference>
+      <Reference Include="ImGui.NET">
+        <HintPath>..\..\dev\ImGui.NET.dll</HintPath>
+      </Reference>
+      <Reference Include="ImGuiScene">
+        <HintPath>..\..\dev\ImGuiScene.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>
