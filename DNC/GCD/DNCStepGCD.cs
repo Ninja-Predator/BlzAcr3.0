@@ -12,11 +12,11 @@ public class DNCStepGCD : ISlotResolver
 {
     public int Check()
     {
-        if (Core.Resolve<JobApi_Dancer>().IsDancing)
-        {
-            return 1;
-        }
         if (Core.Resolve<JobApi_Dancer>().CompleteSteps == 4)
+        {
+            return -1;
+        }
+        if (Core.Resolve<JobApi_Dancer>().IsDancing)
         {
             return 1;
         }

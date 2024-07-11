@@ -22,13 +22,13 @@ public class DNCStdStepGCD : ISlotResolver
         {
             return -1;
         }
-        if (AI.Instance.BattleData.CurrBattleTimeInMs <= 30000L && Core.Me.HasAura(DNCDefinesData.Buffs.TechnicalFinish))
-        {
-            return 0;
-        }
         if (Core.Me.HasAura(49U,5000) && DancerRotationEntry.QT.GetQt("爆发药"))
         {
             return -1;
+        }
+        if (Core.Me.HasAura(DNCDefinesData.Buffs.FinishingMoveReady))
+        {
+            return -10;
         }
         if (Core.Me.HasAura(DNCDefinesData.Buffs.StandardStep) || Core.Me.HasAura(DNCDefinesData.Buffs.TechnicalStep))
         {

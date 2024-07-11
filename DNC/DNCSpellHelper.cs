@@ -94,10 +94,6 @@ namespace Blz.DNC
                 {
                     return DNCDefinesData.Spells.DoubleStandardFinish.GetSpell();
                 }
-                if (Core.Resolve<JobApi_Dancer>().CompleteSteps == 4)
-                {
-                    return DNCDefinesData.Spells.QuadrupleTechnicalFinish.GetSpell();
-                }
             }
             else
             {

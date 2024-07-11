@@ -14,7 +14,7 @@ namespace Blz.DNC.Opener
     {
         public int StartCheck()
         {
-            if (Core.Resolve<JobApi_Dancer>().CompleteSteps == 4 && Core.Resolve<JobApi_Dancer>().IsDancing)
+            if (Core.Resolve<JobApi_Dancer>().CompleteSteps == 4 && Core.Resolve<JobApi_Dancer>().IsDancing && Core.Me.GetCurrTarget().CanAttack())
             {
                 return 1;
             }

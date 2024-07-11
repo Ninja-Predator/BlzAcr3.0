@@ -32,20 +32,20 @@ public class DancerRotationEntry : IRotationEntry
     {
         new SlotResolverData(new DNCTecStepGCD(),SlotMode.Gcd),
         new SlotResolverData(new DNCStepGCD(),SlotMode.Gcd),
-/*        new SlotResolverData(new DNCSaberDanceGCD(),SlotMode.Gcd),
+        new SlotResolverData(new DNCSaberDanceGCD(),SlotMode.Gcd),
         new SlotResolverData(new DNCLastDanceGCD(),SlotMode.Gcd),
-        new SlotResolverData(new DNCStarfallDanceGCD(),SlotMode.Gcd),
         new SlotResolverData(new DNCTillanaGCD(),SlotMode.Gcd),
         new SlotResolverData(new DNCFinishingMoveGCD(),SlotMode.Gcd),
-        new SlotResolverData(new DNCDanceOfTheDawnGCD(),SlotMode.Gcd),
+        new SlotResolverData(new DNCStarfallDanceGCD(),SlotMode.Gcd),
+        //new SlotResolverData(new DNCDanceOfTheDawnGCD(),SlotMode.Gcd),
         new SlotResolverData(new DNCStdStepGCD(),SlotMode.Gcd),
         new SlotResolverData(new DNCProcsGCD(),SlotMode.Gcd),
-        new SlotResolverData(new DNCBaseGCD(),SlotMode.Gcd),*/
+        new SlotResolverData(new DNCBaseGCD(),SlotMode.Gcd),
         new SlotResolverData(new DNCDevilmentAbility(),SlotMode.OffGcd),
         new SlotResolverData(new DNCUsePotionAbility(),SlotMode.OffGcd),
         new SlotResolverData(new DNCFlourishAbility(),SlotMode.OffGcd),
-/*        new SlotResolverData(new DNCFanDance4Ability(),SlotMode.OffGcd),
-        new SlotResolverData(new DNCFanDance3Ability(),SlotMode.OffGcd),*/
+        new SlotResolverData(new DNCFanDance4Ability(),SlotMode.OffGcd),
+        new SlotResolverData(new DNCFanDance3Ability(),SlotMode.OffGcd),
         new SlotResolverData(new DNCFanDanceAbility(),SlotMode.OffGcd)
     };
     
