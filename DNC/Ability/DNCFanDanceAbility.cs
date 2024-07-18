@@ -18,6 +18,10 @@ public class DNCFanDanceAbility : ISlotResolver
         {
             return -10;
         }
+        if (Core.Resolve<MemApiSpell>().GetCooldown(DNCDefinesData.Spells.Cascade).TotalMilliseconds < 600)
+        {
+            return -99;
+        }
         if (DancerRotationEntry.QT.GetQt("燃尽爆发") && Core.Resolve<JobApi_Dancer>().FourFoldFeathers >= 1)
         {
             return 0;
@@ -42,7 +46,7 @@ public class DNCFanDanceAbility : ISlotResolver
         {
             return -2;
         }
-        if (Core.Me.HasAura(DNCDefinesData.Buffs.TechnicalStep))
+/*        if (Core.Me.HasAura(DNCDefinesData.Buffs.TechnicalStep))
         {
             return -6;
         }
@@ -53,7 +57,7 @@ public class DNCFanDanceAbility : ISlotResolver
         if (DNCDefinesData.Spells.Flourish.RecentlyUsed(1200))
         {
             return -4;
-        }
+        }*/
         if (Core.Me.HasLocalPlayerAura(DNCDefinesData.Buffs.Devilment))
         {
             return 1;
@@ -68,7 +72,7 @@ public class DNCFanDanceAbility : ISlotResolver
     public void Build(Slot slot)
     {
         Spell spell = DNCDefinesData.Spells.FanDance.GetSpell();
-        if (DNCDefinesData.Spells.FanDance2.IsUnlock() && TargetHelper.CheckNeedUseAoeByMe(5, 5, 2) && DancerRotationEntry.QT.GetQt("AOE"))
+        if (DNCDefinesData.Spells.FanDance2.IsUnlock() && TargetHelper.GetNearbyEnemyCount(5)>2 && DancerRotationEntry.QT.GetQt("AOE"))
         {
             spell = DNCDefinesData.Spells.FanDance2.GetSpell();
         }

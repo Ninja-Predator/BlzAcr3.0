@@ -18,6 +18,10 @@ public class DNCFlourishAbility : ISlotResolver
         {
             return -10;
         }
+        if (Core.Resolve<MemApiSpell>().GetCooldown(DNCDefinesData.Spells.Cascade).TotalMilliseconds < 800)
+        {
+            return -99;
+        }
         if (!DancerRotationEntry.QT.GetQt("爆发"))
         {
             return -5;

@@ -23,18 +23,6 @@ public class DNCProcsGCD : ISlotResolver
         {
             return -2;
         }
-        if (DNCDefinesData.Spells.TechnicalStep.GetSpell().Cooldown.TotalMilliseconds <= 500.0 && DNCDefinesData.Spells.Devilment.GetSpell().Cooldown.TotalMilliseconds <= 7500.0 && DancerRotationEntry.QT.GetQt("爆发") && DancerRotationEntry.QT.GetQt("大舞"))
-        {
-            return -1;
-        }
-        if (DancerRotationEntry.QT.GetQt("燃尽爆发"))
-        {
-            if (!Core.Me.HasAura(DNCDefinesData.Buffs.FlourishingSymmetry) && !Core.Me.HasAura(DNCDefinesData.Buffs.FlourshingFlow) && !Core.Me.HasAura(DNCDefinesData.Buffs.SilkenFlow))
-            {
-                Core.Me.HasAura(DNCDefinesData.Buffs.SilkenSymmetry);
-            }
-            return 0;
-        }
         return 0;
     }
 

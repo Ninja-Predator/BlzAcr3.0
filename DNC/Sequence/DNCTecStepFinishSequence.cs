@@ -33,7 +33,7 @@ namespace Blz.DNC.Opener
 
         private static void Step0(Slot slot)
         {
-            slot.Add(DNCDefinesData.Spells.TechnicalStep.GetSpell());
+            slot.Add(DNCDefinesData.Spells.QuadrupleTechnicalFinish.GetSpell());
             if(DNCDefinesData.Spells.Devilment.IsUnlock() && (DNCDefinesData.Spells.Devilment.IsReady()||Core.Resolve<MemApiSpell>().GetCooldown(DNCDefinesData.Spells.Devilment).TotalMilliseconds<1500.0))
                 slot.Add(DNCDefinesData.Spells.Devilment.GetSpell());
         }

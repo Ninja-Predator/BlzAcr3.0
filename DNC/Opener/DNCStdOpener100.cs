@@ -44,13 +44,13 @@ namespace Blz.DNC.Opener
         public void InitCountDown(CountDownHandler countDownHandler)
         {
             countDownHandler.AddAction(14000,DNCDefinesData.Spells.StandardStep);
-            countDownHandler.AddAction(11500, DNCSpellHelper.GetStep);
-            countDownHandler.AddAction(9000, DNCSpellHelper.GetStep);
+            countDownHandler.AddAction(12500, DNCSpellHelper.GetStep);
+            countDownHandler.AddAction(11000, DNCSpellHelper.GetStep);
             if (DancerRotationEntry.QT.GetQt("爆发药") && !DNCSettings.Instance.delayPotion)
             {
                 countDownHandler.AddPotionAction(2000);
             }
-            countDownHandler.AddAction(500, DNCDefinesData.Spells.DoubleStandardFinish);
+            countDownHandler.AddAction(300, DNCDefinesData.Spells.DoubleStandardFinish);
         }
 
         private static void Step0(Slot slot)

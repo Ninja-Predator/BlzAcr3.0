@@ -30,12 +30,13 @@ public class DancerRotationEntry : IRotationEntry
 
     private List<SlotResolverData> SlotResolvers = new()
     {
+        new SlotResolverData(new TecStepFinishGCD(), SlotMode.Gcd),
         new SlotResolverData(new DNCTecStepGCD(),SlotMode.Gcd),
         new SlotResolverData(new DNCStepGCD(),SlotMode.Gcd),
-        new SlotResolverData(new DNCSaberDanceGCD(),SlotMode.Gcd),
         new SlotResolverData(new DNCLastDanceGCD(),SlotMode.Gcd),
-        new SlotResolverData(new DNCTillanaGCD(),SlotMode.Gcd),
         new SlotResolverData(new DNCFinishingMoveGCD(),SlotMode.Gcd),
+        new SlotResolverData(new DNCSaberDanceGCD(),SlotMode.Gcd),
+        new SlotResolverData(new DNCTillanaGCD(),SlotMode.Gcd),
         new SlotResolverData(new DNCStarfallDanceGCD(),SlotMode.Gcd),
         //new SlotResolverData(new DNCDanceOfTheDawnGCD(),SlotMode.Gcd),
         new SlotResolverData(new DNCStdStepGCD(),SlotMode.Gcd),
@@ -61,7 +62,8 @@ public class DancerRotationEntry : IRotationEntry
             MaxLevel = 100,
             Description = "舞者测试",
         };
-        rot.AddSlotSequences(new DNCTecStepFinishSequence());
+        //rot.AddSlotSequences(new DNCTecStepFinishSequence());
+        rot.SetRotationEventHandler(new DancerRotationEventHandler());
         rot.AddOpener(new Func<uint, IOpener>(GetOpener));
         return rot;
     }
@@ -101,7 +103,7 @@ public class DancerRotationEntry : IRotationEntry
         DancerRotationEntry.QT.AddQt("大舞", true, "技巧舞步");
         DancerRotationEntry.QT.AddQt("百花", true, "百花争艳");
         DancerRotationEntry.QT.AddQt("燃尽爆发", false, "燃尽爆发");
-        DancerRotationEntry.QT.AddQt("自动舞伴", false, "自动舞伴");
+        DancerRotationEntry.QT.AddQt("自动舞伴", true, "自动舞伴");
     }
 
     public void DrawBattle(JobViewWindow jobViewWindow)
@@ -109,7 +111,7 @@ public class DancerRotationEntry : IRotationEntry
 
         ImGui.Checkbox("战斗结束qt自动重置回战斗前状态", ref DNCSettings.Instance.AutoReset);
         ImGuiHelper.LeftInputInt("剑舞触发阈值", ref DNCSettings.Instance.espritThreshold, 10, 100, 10);
-        ImGuiHelper.ToggleButton("2分钟爆发药", ref DNCSettings.Instance.delayPotion);
+        ImGui.Checkbox("2分钟爆发药", ref DNCSettings.Instance.delayPotion);
         //List<string> rotations = (List<string>)DNCSettings.DefaultConfig["rotations"];
         //ImGuiHelper.LeftCombo("选择起手:", ref DNCSettings.Instance.rotationIndex, rotations.ToArray(), 200);
         if (TTKHelper.IsTargetTTK(Core.Me.GetCurrTarget(), false)) { }
@@ -223,5 +225,7 @@ public class DancerRotationEntry : IRotationEntry
                 }*/
     }
 
-    public void OnDrawSetting(){}
+    public void OnDrawSetting(){
+        DNCSettingsUI.Instance.Draw();
+    }
 }

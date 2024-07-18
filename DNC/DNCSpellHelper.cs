@@ -15,7 +15,7 @@ namespace Blz.DNC
 
         public static Spell GetBaseGCDCombo()
         {
-            if (DNCDefinesData.Spells.Windmill.IsUnlock() && TargetHelper.CheckNeedUseAoeByMe(5, 5, 3) && DancerRotationEntry.QT.GetQt("AOE"))
+            if (DNCDefinesData.Spells.Windmill.IsUnlock() && TargetHelper.GetNearbyEnemyCount(5)>3 && DancerRotationEntry.QT.GetQt("AOE"))
             {
                 return DNCSpellHelper.GetAOECombo();
             }
@@ -41,7 +41,7 @@ namespace Blz.DNC
         }
         public static Spell GetProcGCDCombo()
         {
-            if (DNCDefinesData.Spells.RisingWindmill.IsUnlock() && TargetHelper.CheckNeedUseAoeByMe(5, 5, 2) && DancerRotationEntry.QT.GetQt("AOE"))
+            if (DNCDefinesData.Spells.RisingWindmill.IsUnlock() && TargetHelper.GetNearbyEnemyCount(5)>2 && DancerRotationEntry.QT.GetQt("AOE"))
             {
                 return DNCSpellHelper.GetProcAOECombo();
             }
@@ -93,6 +93,10 @@ namespace Blz.DNC
                 if (Core.Me.HasAura(DNCDefinesData.Buffs.StandardStep) && Core.Resolve<JobApi_Dancer>().CompleteSteps == 2)
                 {
                     return DNCDefinesData.Spells.DoubleStandardFinish.GetSpell();
+                }
+                if (Core.Resolve<JobApi_Dancer>().IsDancing && Core.Resolve<JobApi_Dancer>().CompleteSteps == 4)
+                {
+                    return null;
                 }
             }
             else

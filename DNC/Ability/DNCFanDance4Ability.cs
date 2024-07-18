@@ -18,21 +18,21 @@ public class DNCFanDance4Ability : ISlotResolver
         {
             return -10;
         }
-        if (DNCDefinesData.Spells.Devilment.GetSpell().Cooldown.TotalMilliseconds <= 1000.0)
+        if (Core.Resolve<MemApiSpell>().GetCooldown(DNCDefinesData.Spells.Cascade).TotalMilliseconds < 600)
         {
-            return -9;
+            return -99;
         }
-        if (!Core.Me.HasAura(DNCDefinesData.Buffs.FourfoldFanDance) && !DNCDefinesData.Spells.Flourish.RecentlyUsed(1200))
-        {
-            return -7;
-        }
-        if (DNCDefinesData.Spells.Devilment.RecentlyUsed(1200))
+        if (DNCDefinesData.Spells.Flourish.RecentlyUsed(1200))
         {
             return -6;
         }
         if (Core.Resolve<JobApi_Dancer>().IsDancing)
         {
             return -5;
+        }
+        if (!Core.Me.HasAura(DNCDefinesData.Buffs.FourfoldFanDance) || DNCDefinesData.Spells.FanDance4.RecentlyUsed(1200))
+        {
+            return -8;
         }
         if (Core.Me.HasAura(DNCDefinesData.Buffs.Devilment))
         {

@@ -44,7 +44,7 @@ public class DNCSettings
     
     public JobViewSave JobViewSave = new(); // QT设置存档
 
-    public int espritThreshold = 80;
+    public int espritThreshold = 85;
 
     public bool delayPotion;
 

@@ -2,6 +2,7 @@
 using AEAssist.CombatRoutine.Module;
 using AEAssist.Extension;
 using AEAssist.Helper;
+using AEAssist.JobApi;
 using AEAssist.MemoryApi;
 using Blz.DNC.Data;
 
@@ -19,9 +20,13 @@ public class DNCLastDanceGCD : ISlotResolver
         {
             return -10;
         }
-        if (DNCDefinesData.Spells.Devilment.GetSpell().Cooldown.TotalSeconds<25.0)
+        if (DNCDefinesData.Spells.Devilment.GetSpell().Cooldown.TotalSeconds<23.0 && DancerRotationEntry.QT.GetQt("爆发") && DancerRotationEntry.QT.GetQt("大舞"))
         {
             return -1;
+        }
+        if (Core.Me.HasLocalPlayerAura(DNCDefinesData.Buffs.TechnicalFinish) && Core.Resolve<JobApi_Dancer>().Esprit > 75)
+        {
+            return -2;
         }
         return 0;
     }

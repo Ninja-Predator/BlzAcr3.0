@@ -38,7 +38,11 @@ public class DNCStdStepGCD : ISlotResolver
         {
             return -3;
         }
-        if (DNCDefinesData.Spells.TechnicalStep.IsUnlock() && DNCDefinesData.Spells.Devilment.GetSpell().Cooldown.TotalMilliseconds <= 12000.0 && DancerRotationEntry.QT.GetQt("爆发") && DancerRotationEntry.QT.GetQt("大舞"))
+        if (DNCDefinesData.Spells.TechnicalStep.IsUnlock() && DNCDefinesData.Spells.TechnicalStep.GetSpell().Cooldown > TimeSpan.FromSeconds(25.0) && Core.Me.HasAura(DNCDefinesData.Buffs.StandardFinish, (int)(DNCDefinesData.Spells.TechnicalStep.GetSpell().Cooldown.TotalMilliseconds + 2500)) && DancerRotationEntry.QT.GetQt("爆发") && DancerRotationEntry.QT.GetQt("大舞"))
+        {
+            return -1;
+        }
+        if (DNCDefinesData.Spells.TechnicalStep.IsUnlock() && DNCDefinesData.Spells.TechnicalStep.GetSpell().Cooldown.TotalMilliseconds <= 13000.0 && DancerRotationEntry.QT.GetQt("爆发") && DancerRotationEntry.QT.GetQt("大舞"))
         {
             return -3;
         }

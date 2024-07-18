@@ -18,6 +18,10 @@ public class DNCUsePotionAbility : ISlotResolver
         {
             return -1;
         }
+        if (Core.Resolve<MemApiSpell>().GetCooldown(DNCDefinesData.Spells.Cascade).TotalMilliseconds < 600)
+        {
+            return -99;
+        }
         if (!DNCDefinesData.Spells.Potion.IsReady())
         {
             return -1;
